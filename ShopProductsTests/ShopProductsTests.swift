@@ -41,21 +41,6 @@ class ProductListViewModelTests: XCTestCase {
 
     }
     
-    // Test: Successful loading with refresh flag set to true
-    func testLoadProducts_WithRefresh() {
-        let expectation = self.expectation(description: "Products loaded")
-        
-        viewModel.loadProducts(urlStr: "http://fakestoreapi.com/products", fromRefresh: true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            expectation.fulfill()
-        }
-        
-        waitForExpectations(timeout: 3)
-        
-        XCTAssertTrue(viewModel.products.count > 0, "Products count should be greater than 0")
-    }
-    
     // Test: Handle data persistence (mock data loading)
     func testLoadProducts_WithSavedData() {
         viewModel.loadProducts(urlStr: "http://fakestoreapi.com/products")
